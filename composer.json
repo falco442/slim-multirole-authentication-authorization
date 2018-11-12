@@ -1,0 +1,33 @@
+{
+    "name": "falco442/slim-multirole-authentication-authorization",
+    "description": "A basic http authentication/authorization middleware with multirole feature",
+    "version": "1.0.0-dev",
+    "type": "library",
+    "keywords": [
+        "multirole",
+        "basic",
+        "http",
+        "authentication",
+        "authorization"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Marco Francaviglia",
+            "email": "info@marcofrancaviglia.it",
+            "homepage": "http://www.marcofrancaviglia.it/",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "slim/slim": "^3.0",
+        "illuminate/database": "~5.1",
+        "php" : "^5.5 || ^7.2",
+        "ext-mysqli": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "falco442\\": "src/"
+        }
+    }
+}
