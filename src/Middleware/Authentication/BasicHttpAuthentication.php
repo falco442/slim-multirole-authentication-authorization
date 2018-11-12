@@ -32,7 +32,7 @@ class BasicHttpAuthentication{
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    public function __invoke($request, $response, $next){
+    public function __invoke(ServerRequestInterface $request, ResponseInterface $response, $next){
         $httpHost = $this->container['environment']['HTTP_HOST'];
         $authHeader = $request->getHeader('Authorization');
         if(!$authHeader || !count($authHeader)){
@@ -43,7 +43,14 @@ class BasicHttpAuthentication{
 
         list($user, $password) = explode(':', $encoded);
 
+        $password = password_hash($password, PASSWORD_DEFAULT);
+
         $config = $this->container->get('settings');
+
+        if(!isset($config['authentication'])){
+            $config['authentication'] = [];
+        }
+
         $authConfig = array_replace_recursive($this->_config, $config['authentication']);
 
         $model = $authConfig['userModel'];
